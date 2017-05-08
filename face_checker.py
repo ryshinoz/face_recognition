@@ -4,6 +4,7 @@ from keras.preprocessing.image import load_img,img_to_array
 import numpy as np
 import cv2
 import time
+import keras.backend as K
 
 
 cascade_path = "C:\Tools\opencv\sources\data\haarcascades_cuda\haarcascade_frontalface_alt.xml"
@@ -13,6 +14,7 @@ color = (255, 255, 255)
 image_size = 32
 
 def facedetect(file):
+    K.clear_session()
     img = cv2.imread(file)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.07, minNeighbors=9, minSize=(10, 10))
